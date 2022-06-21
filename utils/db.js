@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const env = require("../env");
+const env = require("../config/env");
 const logger = require("../logger/logger");
 
 const connectDB = async () => {

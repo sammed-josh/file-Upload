@@ -1,0 +1,2 @@
+info: Label🏷️: Jun-21-2022 10:28:22: Listening on port 3010
+error: Label🏷️: Jun-21-2022 10:28:22: MongooseError: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
