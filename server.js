@@ -6,7 +6,8 @@ const app = express();
 
 const logger = require("./logger/logger");
 
-app.use("/api/files", require("./routes/userRoutes"));
+app.use("/files", require("./routes/userFile"));
+app.use("/user",require("./routes/userLogin"))
 
 connectDB().catch((error) => {
   logger.error(error);
