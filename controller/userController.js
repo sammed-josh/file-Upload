@@ -39,4 +39,19 @@ const userRegister = async (req, res) => {
   }
 };
 
-module.exports = { fileUploader };
+const userLogin = async (req, res) => {
+  try {
+    const { userName, password } = req.body;
+    const user = await loginService(userName, password);
+
+    if (user.message) {
+      throw new Error(user.message);
+    }
+    responder(200, "Login successfull for user", res, user);
+  } catch (error) {
+    logger.error(`Error in userLoginController:${error}`);
+    responder(400, error.message, res);
+  }
+};
+
+module.exports = { fileUploader,userLogin,userRegister };
