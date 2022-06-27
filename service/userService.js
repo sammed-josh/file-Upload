@@ -53,6 +53,7 @@ const registerService = async (userData) => {
     }
     // Creating new user in Database
     await userHelper.userCreate(userData);
+    redisSet("userInfo", userData);
     return userData;
   } catch (error) {
     logger.error(`Error in registerService:${error}`);
