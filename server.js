@@ -31,7 +31,12 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     logger.info("user disconnected");
   });
+   socket.on("create", function (room) {
+     socket.join(room);
+   });
 });
+
+
 
 app.listen(PORT, () => {
   logger.info(`Listening on port ${PORT}`);
