@@ -24,16 +24,23 @@ connectDB().catch((error) => {
   logger.error(error);
 });
 
+let name ;
+
 io.on("connection", (socket) => {
-   socket.on("chat message", (msg) => {
-     io.emit("chat message", msg);
-   });
-  socket.on("disconnect", () => {
-    logger.info("user disconnected");
+  console.log("new user connected");
+
+  socket.on("joining msg", (username) => {
+    name = username;
+    io.emit("chat message", `---${name} joined the chat---`);
   });
-   socket.on("create", function (room) {
-     socket.join(room);
-   });
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+    io.emit("chat message", `---${name} left the chat---`);
+  });
+  socket.on("chat message", (msg) => {
+    socket.broadcast.emit("chat message", msg);
+  });
 });
 
 
